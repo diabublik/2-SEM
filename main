@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include "Header.h"
+
+struct vector {
+    float coordinates[10];
+    int order;
+    int num = 0; //кол-во векторов в 1 структуре
+};
+
+void main() {
+    int choice, numofvectors = 0;
+    int ind1, ind2;
+    vector* array = new vector[1];
+    do {
+        puts("--Menu--");
+        puts("1 - Input a new vector");
+        puts("2 - Get a sum of the vectors");
+        puts("3 - Get a difference of the vectors");
+        puts("4 - Get a product of the vector by a number");
+        puts("5 - Check a equality of the vectors");
+        puts("0 - Exit");
+        scanf_s("%d", &choice);
+        scanf_s("%*c");
+        switch (choice) {
+        case 1:
+            array = CreateArray(array, numofvectors);
+            Addinf(array, numofvectors);
+            Show(array, numofvectors);
+            break;
+        case 2:
+            puts("Input the numbers of 2 vectors:");
+            scanf_s("%d %d", &ind1, &ind2);
+            Sum(array, numofvectors, ind1, ind2);
+            Show(array, numofvectors);
+            break;
+        case 3:
+            puts("Input the numbers of 2 vectors:");
+            scanf_s("%d %d", &ind1, &ind2);
+            Difference(array, numofvectors, ind1, ind2);
+            Show(array, numofvectors);
+            break;
+        case 4:
+            puts("Input the numbers of 2 vectors:");
+            scanf_s("%d %d", &ind1, &ind2);
+            Product(array, numofvectors, ind1, ind2);
+            Show(array, numofvectors);
+            break;
+        case 5:
+            puts("Input the numbers of 2 vectors:");
+            scanf_s("%d %d", &ind1, &ind2);
+            Equality(array, numofvectors, ind1, ind2);
+            Show(array, numofvectors);
+            break;
+        case 0:
+            break;
+        default:
+            puts("Wrong command");
+            break;
+        }
+    } while (choice != 0);
+}
