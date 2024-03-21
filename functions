@@ -1,0 +1,111 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <time.h>
+#include "Header.h"
+
+struct vector {
+    float coordinates[10];
+    int order;
+    int num = 0; //кол-во векторов в 1 структуре
+};
+
+vector* CreateArray(vector* array, int& numofvectors) {
+    if (numofvectors == 0) {
+        vector* array = new vector[numofvectors + 1];
+    }
+    else {
+        vector* temparray = new vector[numofvectors + 1];
+        for (int i = 0; i < numofvectors; i++) {
+            *(temparray + i) = *(array + i);
+        }
+        delete[] array;
+        array = temparray;
+    }
+    numofvectors++;
+    return array;
+}
+
+void Addinf(vector* array, int numofvectors) {
+    puts("Input coordinate of the vector or ENTER:");
+    char line[10];
+    while (gets_s(line), strlen(line) != 0) {
+        float coordinate = atof(line);//////////
+        (array + numofvectors - 1)->coordinates[(array + numofvectors - 1)->num] = coordinate;
+        (array + numofvectors - 1)->num++;
+    }
+    (array + numofvectors - 1)->order = numofvectors - 1;
+}
+
+void Show(vector* array, int numofvectors) {
+    srand(time(NULL));
+    puts("-----------------------------------------\n");
+    for (int i = 0; i < numofvectors; i++) {
+        printf("Vector №%2d. Coordinates:\n", (array + i)->order + 1);
+        for (int j = 0; j < (array + i)->num; j++) {
+            printf("%7.2f", (array + i)->coordinates[j]);
+        }
+        puts("\n");
+    }
+    puts("-----------------------------------------");
+}
+
+void Sum(vector* array, int numofvectors, int ind1, int ind2) {
+    srand(time(NULL));
+    puts("-----------------------------------------\n");
+    if ((array + ind1 - 1)->num != (array + ind2 - 1)->num)
+        printf("The vectors have a different dimension\nThe sum operation is not possible");
+    else {
+        printf("The sum of vector №%2d and vector №%2d:\n", ind1, ind2);
+        for (int i = 0; i < (array + ind1 - 1)->num; i++) {
+            printf("%7.2f", (array + ind1 - 1)->coordinates[i] + (array + ind2 - 1)->coordinates[i]);
+        }
+    }
+    puts("\n");
+}
+
+void Difference(vector* array, int numofvectors, int ind1, int ind2) {
+    srand(time(NULL));
+    puts("-----------------------------------------\n");
+    if ((array + ind1 - 1)->num != (array + ind2 - 1)->num)
+        printf("The vectors have a different dimension\nThe difference operation is not possible");
+    else {
+        printf("The difference of vector №%2d and vector №%2d:\n", ind1, ind2);
+        for (int i = 0; i < (array + ind1 - 1)->num; i++) {
+            printf("%7.2f", (array + ind1 - 1)->coordinates[i] - (array + ind2 - 1)->coordinates[i]);
+        }
+    }
+    puts("\n");
+}
+
+void Product(vector* array, int numofvectors, int ind1, int ind2) {
+    srand(time(NULL));
+    puts("-----------------------------------------\n");
+    if ((array + ind1 - 1)->num != (array + ind2 - 1)->num)
+        printf("The vectors have a different dimension\nThe product operation is not possible");
+    else {
+        printf("The product of vector №%2d and vector №%2d:\n", ind1, ind2);
+        for (int i = 0; i < (array + ind1 - 1)->num; i++) {
+            printf("%7.2f", (array + ind1 - 1)->coordinates[i] * (array + ind2 - 1)->coordinates[i]);
+        }
+    }
+    puts("\n");
+}
+
+void Equality(vector* array, int numofvectors, int ind1, int ind2) {
+    srand(time(NULL));
+    int flag = 1;
+    puts("-----------------------------------------\n");
+    if ((array + ind1 - 1)->num != (array + ind2 - 1)->num)
+        printf("The vectors №%2d and №%2d have a different dimension\nThe vectors aren`t equal", ind1, ind2);
+    else {
+        for (int i = 0; i < (array + ind1 - 1)->num; i++) {
+            if ((array + ind1 - 1)->coordinates[i] != (array + ind2 - 1)->coordinates[i])
+                flag = 0;
+        }
+        if (flag == 1) printf("The vectors №%2d and №%2d are equal", ind1, ind2);
+        else printf("The vectors №%2d and №%2d aren`t equal", ind1, ind2);
+    }
+    puts("\n");
+}
