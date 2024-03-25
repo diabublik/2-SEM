@@ -1,7 +1,12 @@
+struct vector {
+    float coordinates[10];
+    int order;
+    int num = 0; //кол-во векторов в 1 структуре
+};
 vector* CreateArray(vector* array, int& numofvectors);
 void Addinf(vector* array, int numofvectors);
 void Show(vector* array, int numofvectors);
 void Sum(vector* array, int numofvectors, int ind1, int ind2);
 void Difference(vector* array, int numofvectors, int ind1, int ind2);
 void Product(vector* array, int numofvectors, int ind1, int ind2);
-void Equality(vector* array, int numofvectors, int ind1, int ind2);
+void Equality(vector*, int, int, int);
