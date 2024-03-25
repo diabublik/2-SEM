@@ -5,12 +5,6 @@
 #include <time.h>
 #include "Header.h"
 
-struct vector {
-    float coordinates[10];
-    int order;
-    int num = 0; //кол-во векторов в 1 структуре
-};
-
 vector* CreateArray(vector* array, int& numofvectors) {
     if (numofvectors == 0) {
         vector* array = new vector[numofvectors + 1];
