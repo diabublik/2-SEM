@@ -2,13 +2,6 @@
 #include <locale.h>
 #include "Header.h"
 
-struct vector {
-    float coordinates[10];
-    int order;
-    int num = 0; //кол-во векторов в 1 структуре
-};
-
-
 int main() {
     setlocale(0, "russian");
     int choice, numofvectors = 0;
